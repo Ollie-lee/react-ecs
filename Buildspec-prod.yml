@@ -7,8 +7,8 @@ phases:
     commands:
       # log in to ecr
       # - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - REPOSITORY_URI=604110116295.dkr.ecr.ap-southeast-2.amazonaws.com/ollie-react-ecs
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 604110116295.dkr.ecr.ap-southeast-2.amazonaws.com
       # use commit hash as Image tag
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
